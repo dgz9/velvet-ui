@@ -1,0 +1,211 @@
+@import "@velvet-ui/core/src/styles.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Override navbar max-width globally */
+.velvet-navbar > div > div {
+  max-width: none !important;
+}
+
+@layer base {
+  :root {
+    /* Font families */
+    --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Consolas, "Liberation Mono", Menlo, monospace;
+    
+    /* Default theme colors - will be overridden by ThemeProvider */
+    --color-primary: #3b82f6;
+    --color-primary-hover: #2563eb;
+    --color-primary-foreground: #ffffff;
+    --color-secondary: #6b7280;
+    --color-secondary-hover: #4b5563;
+    --color-secondary-foreground: #ffffff;
+    --color-success: #10b981;
+    --color-success-hover: #059669;
+    --color-success-foreground: #ffffff;
+    --color-warning: #f59e0b;
+    --color-warning-hover: #d97706;
+    --color-warning-foreground: #ffffff;
+    --color-danger: #ef4444;
+    --color-danger-hover: #dc2626;
+    --color-danger-foreground: #ffffff;
+    --color-info: #3b82f6;
+    --color-info-hover: #2563eb;
+    --color-info-foreground: #ffffff;
+    
+    /* Background colors */
+    --color-background: #ffffff;
+    --color-background-secondary: #f9fafb;
+    --color-background-tertiary: #f3f4f6;
+    --color-background-elevated: #ffffff;
+    --color-background-overlay: rgba(0, 0, 0, 0.5);
+    --color-background-inverse: #111827;
+    
+    /* Foreground colors */
+    --color-foreground: #111827;
+    --color-foreground-secondary: #6b7280;
+    --color-foreground-tertiary: #9ca3af;
+    --color-foreground-inverse: #ffffff;
+    
+    /* Border colors */
+    --color-border: #e5e7eb;
+    --color-border-secondary: #d1d5db;
+    --color-border-tertiary: #9ca3af;
+    
+    /* Additional theme colors */
+    --color-card: #ffffff;
+    --color-surface: #f9fafb;
+    --color-muted: #f3f4f6;
+    --color-muted-foreground: #6b7280;
+    --color-accent: #8b5cf6;
+    --color-accent-hover: #7c3aed;
+    --color-accent-foreground: #ffffff;
+  }
+  
+  .dark {
+    /* Dark mode colors - will be overridden by ThemeProvider */
+    --color-background: #0a0a0a;
+    --color-background-secondary: #171717;
+    --color-background-tertiary: #262626;
+    --color-background-elevated: #171717;
+    --color-background-overlay: rgba(0, 0, 0, 0.8);
+    --color-background-inverse: #ffffff;
+    
+    --color-foreground: #ffffff;
+    --color-foreground-secondary: #a3a3a3;
+    --color-foreground-tertiary: #737373;
+    --color-foreground-inverse: #0a0a0a;
+    
+    --color-border: #262626;
+    --color-border-secondary: #404040;
+    --color-border-tertiary: #525252;
+    
+    /* Additional theme colors for dark mode */
+    --color-card: #171717;
+    --color-surface: #262626;
+    --color-muted: #404040;
+    --color-muted-foreground: #a3a3a3;
+    --color-accent: #a78bfa;
+    --color-accent-hover: #8b5cf6;
+    --color-accent-foreground: #ffffff;
+  }
+  
+  * {
+    @apply border-border;
+  }
+  
+  body {
+    @apply text-foreground;
+    font-family: var(--font-sans), system-ui, sans-serif;
+    background: var(--color-background);
+    position: relative;
+    min-height: 100vh;
+  }
+  
+  /* Beautiful gradient backgrounds */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(
+      135deg,
+      var(--color-background) 0%,
+      var(--color-background) 40%,
+      color-mix(in srgb, var(--color-primary) 5%, var(--color-background)) 60%,
+      color-mix(in srgb, var(--color-secondary) 3%, var(--color-background)) 100%
+    );
+  }
+  
+  /* Animated gradient orbs for depth */
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    opacity: 0.5;
+    background: 
+      radial-gradient(circle 800px at 20% 80%, color-mix(in srgb, var(--color-primary) 15%, transparent), transparent 40%),
+      radial-gradient(circle 600px at 80% 20%, color-mix(in srgb, var(--color-secondary) 10%, transparent), transparent 40%),
+      radial-gradient(circle 700px at 60% 60%, color-mix(in srgb, var(--color-accent) 8%, transparent), transparent 40%);
+    animation: float 20s ease-in-out infinite;
+  }
+  
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    33% {
+      transform: translate(-20px, -30px) scale(1.05);
+    }
+    66% {
+      transform: translate(20px, 20px) scale(0.95);
+    }
+  }
+  
+  /* Dark mode adjustments */
+  .dark body::before {
+    background: linear-gradient(
+      135deg,
+      var(--color-background) 0%,
+      var(--color-background) 30%,
+      color-mix(in srgb, var(--color-primary) 8%, var(--color-background)) 60%,
+      color-mix(in srgb, var(--color-secondary) 5%, var(--color-background)) 100%
+    );
+  }
+  
+  .dark body::after {
+    opacity: 0.3;
+    background: 
+      radial-gradient(circle 800px at 20% 80%, color-mix(in srgb, var(--color-primary) 20%, transparent), transparent 40%),
+      radial-gradient(circle 600px at 80% 20%, color-mix(in srgb, var(--color-secondary) 15%, transparent), transparent 40%),
+      radial-gradient(circle 700px at 60% 60%, color-mix(in srgb, var(--color-accent) 12%, transparent), transparent 40%);
+  }
+}
+
+@layer utilities {
+  /* Gradient animation */
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+  
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+  }
+  
+  /* Blob animation */
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+    100% {
+      transform: translate(0px, 0px) scale(1);
+    }
+  }
+  
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+  
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+  
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+}

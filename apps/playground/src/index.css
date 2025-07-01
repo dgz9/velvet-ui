@@ -1,0 +1,37 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --velvet-backdrop-blur: 20px;
+    --velvet-glass-opacity: 0.05;
+    --velvet-border-opacity: 0.08;
+    color-scheme: light;
+  }
+
+  .dark {
+    --velvet-glass-opacity: 0.02;
+    --velvet-border-opacity: 0.05;
+    color-scheme: dark;
+  }
+  
+  body {
+    @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+    @apply antialiased;
+  }
+}
+
+@layer utilities {
+  .velvet-glass {
+    background-color: rgba(255, 255, 255, var(--velvet-glass-opacity));
+    backdrop-filter: blur(var(--velvet-backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--velvet-backdrop-blur));
+    border-color: rgba(255, 255, 255, var(--velvet-border-opacity));
+  }
+
+  .dark .velvet-glass {
+    background-color: rgba(17, 24, 39, var(--velvet-glass-opacity));
+    border-color: rgba(255, 255, 255, var(--velvet-border-opacity));
+  }
+}

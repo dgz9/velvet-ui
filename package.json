@@ -1,0 +1,35 @@
+{
+  "name": "velvet-ui",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A modern React component library with smooth animations and Mac OS-inspired aesthetics",
+  "scripts": {
+    "dev": "npm run dev:website",
+    "dev:all": "turbo run dev",
+    "dev:website": "npm run dev --workspace=website",
+    "dev:playground": "npm run dev --workspace=playground",
+    "dev:docs": "npm run dev --workspace=docs",
+    "build": "turbo run build",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md}\"",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build lint test && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@types/node": "^20.11.5",
+    "prettier": "^3.2.4",
+    "turbo": "^1.11.3",
+    "typescript": "^5.3.3"
+  },
+  "packageManager": "npm@11.4.1",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

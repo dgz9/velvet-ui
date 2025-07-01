@@ -1,0 +1,33 @@
+{
+  "name": "website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "node ../../node_modules/next/dist/bin/next dev",
+    "build": "node ../../node_modules/next/dist/bin/next build",
+    "start": "node ../../node_modules/next/dist/bin/next start",
+    "lint": "node ../../node_modules/next/dist/bin/next lint"
+  },
+  "dependencies": {
+    "@velvet-ui/core": "file:../../packages/core",
+    "@velvet-ui/tokens": "file:../../packages/tokens",
+    "framer-motion": "^10.16.4",
+    "lucide-react": "^0.456.0",
+    "next": "^15.3.4",
+    "prism-react-renderer": "^2.3.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "@velvet-ui/eslint-config": "file:../../packages/eslint-config",
+    "@velvet-ui/tsconfig": "file:../../packages/tsconfig",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "tailwindcss": "^3.3.6",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "extends": "./packages/tsconfig/base.json",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@velvet-ui/core": ["./packages/core/src"],
+      "@velvet-ui/tokens": ["./packages/tokens/src"]
+    }
+  }
+}

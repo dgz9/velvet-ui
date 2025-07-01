@@ -1,0 +1,9 @@
+node_modules
+dist
+build
+.next
+.turbo
+coverage
+storybook-static
+*.min.js
+*.min.css

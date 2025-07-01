@@ -1,0 +1,187 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --velvet-backdrop-blur: 20px;
+    --velvet-glass-opacity: 0.05;
+    --velvet-border-opacity: 0.08;
+    --velvet-focus-ring-offset: 255 255 255; /* Default white background */
+    color-scheme: light;
+  }
+
+  .dark {
+    --velvet-glass-opacity: 0.02;
+    --velvet-border-opacity: 0.05;
+    --velvet-focus-ring-offset: 17 24 39; /* Dark mode background color */
+    color-scheme: dark;
+  }
+  
+  body {
+    @apply bg-white text-gray-900 dark:bg-gray-950 dark:text-gray-100;
+    @apply antialiased;
+    font-family: var(--font-sans);
+  }
+  
+  /* Prevent default browser outline on all buttons */
+  button {
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
+  button:focus-visible {
+    outline: none;
+  }
+  
+  /* Ensure consistent focus behavior across browsers */
+  button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+  }
+}
+
+@layer utilities {
+  .velvet-glass {
+    background-color: rgba(255, 255, 255, var(--velvet-glass-opacity));
+    backdrop-filter: blur(var(--velvet-backdrop-blur));
+    -webkit-backdrop-filter: blur(var(--velvet-backdrop-blur));
+    border-color: rgba(255, 255, 255, var(--velvet-border-opacity));
+  }
+
+  .dark .velvet-glass {
+    background-color: rgba(17, 24, 39, var(--velvet-glass-opacity));
+    border-color: rgba(255, 255, 255, var(--velvet-border-opacity));
+  }
+
+  .velvet-window {
+    box-shadow: 
+      0 0 0 0.5px rgba(0, 0, 0, 0.1),
+      0 22px 70px rgba(0, 0, 0, 0.2);
+  }
+
+  .dark .velvet-window {
+    box-shadow: 
+      0 0 0 0.5px rgba(255, 255, 255, 0.1),
+      0 22px 70px rgba(0, 0, 0, 0.4);
+  }
+
+  /* Remove default focus outline for all interactive elements */
+  .velvet-button:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  
+  /* Only show focus ring for keyboard navigation */
+  .velvet-button:focus:not(:focus-visible) {
+    outline: none !important;
+    box-shadow: none !important;
+    --tw-ring-offset-width: 0px !important;
+    --tw-ring-width: 0px !important;
+    --tw-ring-color: transparent !important;
+    --tw-ring-offset-color: transparent !important;
+  }
+  
+  /* Specifically target mouse clicks */
+  .velvet-button:active {
+    outline: none !important;
+    --tw-ring-offset-width: 0px !important;
+    --tw-ring-width: 0px !important;
+  }
+  
+  /* Ensure focus-visible styles work properly in dark mode */
+  .velvet-button:focus-visible {
+    outline: none;
+  }
+
+  .velvet-input:focus {
+    outline: none;
+  }
+
+  /* Glow button shadows - Tailwind 4.0 compatible */
+  .velvet-glow-primary {
+    box-shadow: 0 0 20px rgba(var(--color-primary), 0.5),
+                0 0 40px rgba(var(--color-primary), 0.3);
+  }
+  .velvet-glow-primary:hover {
+    box-shadow: 0 0 30px rgba(var(--color-primary), 0.7),
+                0 0 60px rgba(var(--color-primary), 0.4);
+  }
+  
+  .velvet-glow-secondary {
+    box-shadow: 0 0 20px rgba(var(--color-secondary), 0.5),
+                0 0 40px rgba(var(--color-secondary), 0.3);
+  }
+  .velvet-glow-secondary:hover {
+    box-shadow: 0 0 30px rgba(var(--color-secondary), 0.7),
+                0 0 60px rgba(var(--color-secondary), 0.4);
+  }
+  
+  .velvet-glow-success {
+    box-shadow: 0 0 20px rgba(var(--color-success), 0.5),
+                0 0 40px rgba(var(--color-success), 0.3);
+  }
+  .velvet-glow-success:hover {
+    box-shadow: 0 0 30px rgba(var(--color-success), 0.7),
+                0 0 60px rgba(var(--color-success), 0.4);
+  }
+  
+  .velvet-glow-warning {
+    box-shadow: 0 0 20px rgba(var(--color-warning), 0.5),
+                0 0 40px rgba(var(--color-warning), 0.3);
+  }
+  .velvet-glow-warning:hover {
+    box-shadow: 0 0 30px rgba(var(--color-warning), 0.7),
+                0 0 60px rgba(var(--color-warning), 0.4);
+  }
+  
+  .velvet-glow-danger {
+    box-shadow: 0 0 20px rgba(var(--color-danger), 0.5),
+                0 0 40px rgba(var(--color-danger), 0.3);
+  }
+  .velvet-glow-danger:hover {
+    box-shadow: 0 0 30px rgba(var(--color-danger), 0.7),
+                0 0 60px rgba(var(--color-danger), 0.4);
+  }
+  
+  .velvet-glow-info {
+    box-shadow: 0 0 20px rgba(var(--color-info), 0.5),
+                0 0 40px rgba(var(--color-info), 0.3);
+  }
+  .velvet-glow-info:hover {
+    box-shadow: 0 0 30px rgba(var(--color-info), 0.7),
+                0 0 60px rgba(var(--color-info), 0.4);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .velvet-button,
+    .velvet-card,
+    .velvet-modal,
+    .velvet-toast {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  /* Ensure dropdowns are below navbar but above content */
+  .velvet-dropdown-portal {
+    z-index: 40 !important;
+    position: fixed !important;
+  }
+
+  /* Ensure container has proper stacking when dropdown is open */
+  [data-velvet-dropdown-open="true"] {
+    position: relative;
+    z-index: 30 !important;
+  }
+
+  /* Ensure code blocks are always below dropdowns */
+  .velvet-codeblock {
+    position: relative;
+    z-index: 1;
+  }
+}
